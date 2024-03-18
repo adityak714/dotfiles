@@ -1,4 +1,5 @@
 # My Dotfiles
 
-Terminal: Alacritty
-![](../assets/alacritty.png)
+**Terminal:** Alacritty
+
+![](./assets/alacritty.png)
