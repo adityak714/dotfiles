@@ -67,7 +67,7 @@ style = "Bold"
 [window]
 decorations = "None"
 dynamic_padding = true
-opacity = 0.98
+opacity = 0.90
 
 [window.dimensions]
 columns = 160

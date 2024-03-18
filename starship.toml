@@ -1,1 +1,44 @@
-/home/adityak/.config/starship.toml
+add_newline = false
+
+right_format = "$time"
+
+[username]
+style_user = "bold dimmed blue"
+disabled = false
+
+[line_break]
+disabled = true
+
+[directory]
+style = "bold blue"
+format = "[$path]($style)[$lock_symbol]($lock_style) "
+
+[git_branch]
+format = '[$symbol$branch ]($style)'
+symbol = '🌱'
+style = "bold green"
+
+[time]
+time_format = "%a, %b %d, %Y | %I:%M%P ️"
+format = "$time($style) "
+style = "bright-white"
+disabled = false
+
+[character] # The name of the module we are configuring is "character"
+success_symbol = "[>](bold green)" # The "success_symbol" is set to "➜" with color "bold green"
+
+[nodejs]
+format = '[node ($version)($style)](bold green) '
+
+[java]
+format = '[java ($version)($style)](bold red) '
+
+[cmake]
+format = '[cmake ($version)($style)](bold blue) '
+
+[battery]
+full_symbol = '🔋'
+charging_symbol = '⚡️'
+discharging_symbol = '💀'
+format = '[$percentage]($style)'
+
