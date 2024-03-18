@@ -73,6 +73,7 @@ opacity = 0.90
 columns = 160
 lines = 45
 
+# Comment
 [window.padding]
 x = 15
 y = 15
