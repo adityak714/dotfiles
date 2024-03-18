@@ -54,6 +54,8 @@ require('hologram').setup{
     auto_display = true -- WIP automatic markdown image display, may be prone to breaking
 }
 
+local actions = require("telescope.actions")
+
 vim.cmd.colorscheme "tokyonight-night"
 
 -- Set highlight on search
@@ -80,12 +82,24 @@ vim.o.updatetime = 250
 vim.wo.signcolumn = 'yes'
 
 vim.keymap.set('i', 'fj', '<Esc>', {noremap = true})
-vim.keymap.set("n", ".", ":", {noremap = true})
+vim.keymap.set('n', ".", ":", {noremap = true})
+vim.keymap.set('n', 'fj', '<Esc>', {noremap = true})
+vim.keymap.set('v', 'fj', '<Esc>', {noremap = true})
 
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 local builtin = require("telescope.builtin")
 -- vim.keymap.set('n', 'ff', "<cmd>lua require'telescope.builtin'.find_files({ find_command = {'--hidden'}})<cr>", {noremap=true})
+
+require('telescope').setup{
+    defaults = {
+        mappings = {
+            i = {
+                ["fj"] = actions.close,
+            },
+        },
+    },
+}
 
 vim.keymap.set('n', 'ff', "<cmd>:Telescope find_files hidden=true<cr>", { noremap=true })
