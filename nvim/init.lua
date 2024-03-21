@@ -21,6 +21,12 @@ local plugins = {
 		opts = {},
 	},
 	{
+		'preservim/nerdtree'
+	},
+	{
+		'zyedidia/vim-snake'
+	},
+	{
     		'goolord/alpha-nvim',
     		config = function ()
         		require'alpha'.setup(require'alpha.themes.dashboard'.config)
@@ -76,6 +82,7 @@ vim.o.undofile = true
 -- Case insensitive searching UNLESS /C or capital in search
 vim.o.ignorecase = true
 vim.o.smartcase = true
+vim.o.relativenumber = true
 
 -- Decrease update time
 vim.o.updatetime = 250
@@ -85,6 +92,9 @@ vim.keymap.set('i', 'fj', '<Esc>', {noremap = true})
 vim.keymap.set('n', ".", ":", {noremap = true})
 vim.keymap.set('n', 'fj', '<Esc>', {noremap = true})
 vim.keymap.set('v', 'fj', '<Esc>', {noremap = true})
+
+-- vim.keymap.set('c', '<cmd>:Ex<cr>', '<cmd>:ex<cr>', {noremap = true})
+vim.cmd.cnoreabbrev'ex NERDTree'
 
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '

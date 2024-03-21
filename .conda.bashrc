@@ -2,15 +2,17 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 eval "$(starship init bash)"
+
+# Run in tmux from start
+if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+  exec tmux
+fi
+
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
       *) return;;
 esac
-
-if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
-  exec tmux
-fi
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
@@ -41,7 +43,8 @@ fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-    xterm-color|*-256color) color_prompt=yes;; esac
+    xterm-color|*-256color) color_prompt=yes;;
+esac
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
@@ -90,14 +93,11 @@ fi
 # colored GCC warnings and errors
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
-# alias for switching between conda bashrc and normal bashrc
-alias anaconda="source ~/.conda.bashrc ; conda activate se-for-ai;"
-
 # some more ls aliases
 alias ls='ls --color -hF'
 alias la='ls --color -A'
-alias ll='ls --color -lhF'
 alias l='ls --color -CF'
+alias ll='ls --color -lhF'
 alias cl='clear'
 alias x='exit'
 alias c='clear'
@@ -107,7 +107,6 @@ alias info='neofetch'
 alias gd='git diff'
 alias gb='git branch'
 alias gst='git status'
-alias open='xdg-open'
 
 PS1="\e[1;36m\u@\h \e[1;34m\w \e[1;33m\$(git branch 2>/dev/null | grep '^*' | colrm 1 2 | sed 's/$/ /')\e[0m\$ \e[0m\e[0m"
 
@@ -119,8 +118,6 @@ alias 'shutdown'='shutdown now'
 
 # Using NuSMV
 export PATH=$PATH:/home/adityak/Downloads/NuSMV-2.6.0-linux64/NuSMV-2.6.0-Linux/bin
-
-export CLASSPATH=/home/adityak/uni/a4-group-xx/microservices/mysql-connector-j-8.0.33.jar:/home/adityak/uni/a4-group-xx/microservices/
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -152,4 +149,18 @@ export NVM_DIR="$HOME/.nvm"
 
 bind 'TAB:menu-complete'
 
-fastfetch
+# >>> conda initialize >>>
+# -- However, you should have installed Miniconda in your home dir prior to this 
+# -- (on the website, go through installation shell script FIRST)
+__conda_setup="$('/home/adityak/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/adityak/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/adityak/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/me/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
